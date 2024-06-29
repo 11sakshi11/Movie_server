@@ -16,12 +16,15 @@ mongoose.connect(process.env.MONGO_URL)
     console.log(err)
 });
 
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
+}
+
 
 app.use(express.json());
 app.use(logger("tiny"));
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use(cors(corsOptions));
 
 
 app.use("/api/auth", authRoute);
